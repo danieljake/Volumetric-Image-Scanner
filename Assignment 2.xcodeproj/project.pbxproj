@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C5D5CF0F2239271700732B02 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5D5CF0E2239271700732B02 /* main.cpp */; };
+		C5D5CF172239274E00732B02 /* volimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5D5CF152239274E00732B02 /* volimage.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		C5D5CF0B2239271700732B02 /* Assignment 2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 2"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D5CF0E2239271700732B02 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C5D5CF152239274E00732B02 /* volimage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = volimage.cpp; sourceTree = "<group>"; };
+		C5D5CF162239274E00732B02 /* volimage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = volimage.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				C5D5CF0E2239271700732B02 /* main.cpp */,
+				C5D5CF152239274E00732B02 /* volimage.cpp */,
+				C5D5CF162239274E00732B02 /* volimage.hpp */,
 			);
 			path = "Assignment 2";
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5D5CF0F2239271700732B02 /* main.cpp in Sources */,
+				C5D5CF172239274E00732B02 /* volimage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
