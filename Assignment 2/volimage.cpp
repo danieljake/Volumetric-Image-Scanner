@@ -14,6 +14,32 @@ SRVDAN001::VolImage::VolImage(){
     width=0;
     height=0;
 }
+void SRVDAN001::VolImage::extractWithG(int rowID, std::string output_prefix){
+    std::ofstream fileOut(output_prefix + ".data");
+    std::ofstream * _fileOut = &fileOut; //pointer to point to ofstream object to pass to function
+    SRVDAN001::writeOut(_fileOut, output_prefix, ".data", width, height, 1);
+    fileOut.close();
+    size=0;
+    int _width=0,_number=0,iterator=0;;//iterators for width and height of each individual image
+    fileOut.open(output_prefix +".raw",std::ios::binary);
+    if(fileOut.is_open()){
+        _number=0;
+        while (_number<SRVDAN001::numImages) {
+            _width=0;
+            while (_width<width) {
+                fileOut << slices[_number][rowID][_width];
+                size+=sizeof(slices[_number][rowID][_width]);
+                _width++;
+            }
+            _number++;
+        }
+        fileOut.close();
+    }
+    else{
+        SRVDAN001::printError(output_prefix, ".raw");
+    }
+       SRVDAN001::numImages=1;
+}
 
 void SRVDAN001::VolImage::extract(int sliceId, std::string output_prefix){
     std::ofstream fileOut(output_prefix + ".data");
@@ -67,6 +93,7 @@ void SRVDAN001::VolImage::diffmap(int sliceI, int sliceJ, std::string output_pre
     else{
         SRVDAN001::printError(output_prefix, ".raw");
     }
+    SRVDAN001::numImages=1;
     
 
 }

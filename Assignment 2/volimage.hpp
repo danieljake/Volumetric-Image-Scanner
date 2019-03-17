@@ -11,6 +11,9 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <iostream>
+#include <sstream>
+#include <fstream>
 
 typedef unsigned char byteArray;// unsigned char f(or 2D array)
 
@@ -33,6 +36,7 @@ namespace SRVDAN001 {
         int width, height; // width and height of image stack std::vector<unsigned char**> slices; // data for each slice, in order
         std::vector<unsigned char**> slices;
     public: // public members
+        void extractWithG(int rowID, std::string output_prefix);
         VolImage(); // default constructor - define in .cpp
         ~VolImage(); // destructor - define in .cpp file
         // populate the object with images in stack and //set member variables define in .cpp
