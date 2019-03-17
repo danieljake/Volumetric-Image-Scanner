@@ -19,7 +19,6 @@ void SRVDAN001::VolImage::extract(int sliceId, std::string output_prefix){
     std::ofstream fileOut(output_prefix + ".data");
     std::ofstream * _fileOut = &fileOut; //pointer to point to ofstream object to pass to function
     SRVDAN001::writeOut(_fileOut, output_prefix, ".data", width, height, 1);
-    fileOut.open(output_prefix+".raw",std::ios::binary);
     fileOut.close();
     size=0;
     int _width,_height,iterator=0;;//iterators for width and height of each individual image
@@ -35,7 +34,6 @@ void SRVDAN001::VolImage::extract(int sliceId, std::string output_prefix){
             }
             _height++;
         }
-        std::cout << "\nwidth: " << width << "\nHeight: " << height << "\n " << numImages;
         fileOut.close();
     }
     else{
@@ -43,10 +41,33 @@ void SRVDAN001::VolImage::extract(int sliceId, std::string output_prefix){
     }
     SRVDAN001::numImages=1;
 }
+
 void SRVDAN001::VolImage::diffmap(int sliceI, int sliceJ, std::string output_prefix){
-    std::ofstream fileOut(output_prefix + ".data");
+    std::ofstream fileOut("/Users/danielservant/Documents/Xcode Projects/CSC3020H Assignment 2/brain_mri_raws/" +output_prefix + ".data");
     std::ofstream * _fileOut = &fileOut; //pointer to point to ofstream object to pass to function
     SRVDAN001::writeOut(_fileOut, output_prefix, ".data", width, height, 1);
+    fileOut.close();
+    size=0;
+    int _width,_height,iterator=0;;//iterators for width and height of each individual image
+    fileOut.open(output_prefix +".raw",std::ios::binary);
+    if(fileOut.is_open()){
+        _height=0;
+        while (_height<height) {
+            _width=0;
+            while (_width<width) {
+                byteArray bNew = (byteArray) abs((int)((float) slices[sliceI][_height][_width]-(float) slices[sliceJ][_height][_width]))/2;
+                size+=sizeof(bNew);
+                fileOut << bNew;
+                _width++;
+            }
+            _height++;
+        }
+        fileOut.close();
+    }
+    else{
+        SRVDAN001::printError(output_prefix, ".raw");
+    }
+    
 
 }
 
@@ -75,7 +96,7 @@ bool SRVDAN001::VolImage::readImages(std::string baseName){
     ifs>>height>>std::ws;
     ifs>>SRVDAN001::numImages>>std::ws;
     ifs.close();
-    std::cout << "\nwidth: " << width << "\nHeight: " << height << "\n " << numImages;
+    //std::cout << "\nwidth: " << width << "\nHeight: " << height << "\n " << numImages;
     //loop through all images in stack
     while(iterator<SRVDAN001::numImages){
         std::ostringstream stream; stream<<iterator;
