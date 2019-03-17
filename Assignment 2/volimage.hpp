@@ -14,11 +14,19 @@
 
 typedef unsigned char byteArray;// unsigned char f(or 2D array)
 
-static int numImages;//number of images in stack
-static int size=0;
+
 namespace SRVDAN001 {
-    //method for printing messages relating to files that are unable to be opened
+    static int numImages=0;//number of images in stack
+    static int size=0;
+    //return number of images in stack.
+    int returnNoImages(void);
+    //method for printing error messages relating to files that are unable to be opened for ifstream
     void printError(std::ifstream * ifs,std::string prefix,std::string extension);
+    //Overloaded method for printing error messages relating to files that are unable to be opened for ofstream
+    void printError(std::string prefix,std::string extension);
+    //method for writing to output
+    void writeOut(std::ofstream * _ofs,std::string prefix, std::string extension,int width, int height, int number);
+    
     class VolImage
     {
     private: // private members
