@@ -1,6 +1,5 @@
 //
 //  main.cpp
-//  Assignment 2
 //
 //  Created by Daniel Servant on 2019/03/13.
 //  Copyright © 2019 Daniel Servant. All rights reserved.
@@ -12,17 +11,21 @@
 
 int main(int argc, const char * argv[]) {
     SRVDAN001::VolImage firstClass;
-    firstClass.readImages(std::string(argv[1]));
     switch (argc) {
         case 2:
+        {
+            firstClass.readImages(std::string(argv[1]));
             if(SRVDAN001::returnNoImages()>0){
             std::cout << "Number of images: " << SRVDAN001::returnNoImages()<< "\n" << "Number of bytes required: " << firstClass.volImageSize() << std::endl;
             }else{
                 std::cout << "Error – Erronous input entered." << std::endl;
             }
+        }
             break;
         case 5:
         {
+            firstClass.readImages(std::string(argv[1]));
+            //check for -x extract
             if(std::string(argv[2])=="-x"){
                 int inputInt;
                 std::istringstream intStrean(argv[3]);
@@ -30,6 +33,7 @@ int main(int argc, const char * argv[]) {
                 firstClass.extract(inputInt, std::string(argv[4]));
                 std::cout << "Number of images: " << SRVDAN001::returnNoImages()<< "\n" << "Number of bytes required: " << firstClass.volImageSize() << std::endl;
             }
+            //check for -g extract
             else if(std::string(argv[2])=="-g"){
                 int inputInt;
                 std::istringstream intStrean(argv[3]);
@@ -46,6 +50,8 @@ int main(int argc, const char * argv[]) {
         }
             break;
         case 6:
+        {
+            firstClass.readImages(std::string(argv[1]));
             if((std::string(argv[2])=="-d"))
         {
             int input1,input2;
@@ -58,6 +64,7 @@ int main(int argc, const char * argv[]) {
             
         }else{
             std::cout << "Error – Erronous input entered." << std::endl;
+        }
         }
             break;
             
