@@ -44,7 +44,7 @@
 		C5D5CF022239271700732B02 = {
 			isa = PBXGroup;
 			children = (
-				C5D5CF0D2239271700732B02 /* Assignment 2 */,
+				C5D5CF0D2239271700732B02 /* Volimage */,
 				C5D5CF0C2239271700732B02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,14 +57,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C5D5CF0D2239271700732B02 /* Assignment 2 */ = {
+		C5D5CF0D2239271700732B02 /* Volimage */ = {
 			isa = PBXGroup;
 			children = (
 				C5D5CF0E2239271700732B02 /* main.cpp */,
 				C5D5CF152239274E00732B02 /* volimage.cpp */,
 				C5D5CF162239274E00732B02 /* volimage.hpp */,
 			);
-			path = "Assignment 2";
+			path = Volimage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
