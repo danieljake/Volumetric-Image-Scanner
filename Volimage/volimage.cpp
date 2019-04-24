@@ -17,7 +17,7 @@ SRVDAN001::VolImage::VolImage(){
 void SRVDAN001::VolImage::extractWithG(int rowID, std::string output_prefix){
     std::ofstream fileOut(output_prefix + ".data");
     std::ofstream * _fileOut = &fileOut; //pointer to point to ofstream object to pass to function
-    SRVDAN001::writeOut(_fileOut, output_prefix, ".data", width, height, 1);
+    SRVDAN001::writeOut(_fileOut, output_prefix, ".data", width, SRVDAN001::numImages, 1);
     fileOut.close();
     size=0;
     int _width=0,_number=0,iterator=0;;//iterators for width and height of each individual image
