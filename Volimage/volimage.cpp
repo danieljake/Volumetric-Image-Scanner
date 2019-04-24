@@ -1,6 +1,5 @@
 //
 //  volimage.cpp
-//  Assignment 2
 //
 //  Created by Daniel Servant on 2019/03/13.
 //  Copyright © 2019 Daniel Servant. All rights reserved.
@@ -24,8 +23,17 @@ void SRVDAN001::VolImage::extractWithG(int rowID, std::string output_prefix){
     fileOut.open(output_prefix +".raw",std::ios::binary);
     if(fileOut.is_open()){
         _number=0;
+        //iterate over each image in stack
         while (_number<SRVDAN001::numImages) {
             _width=0;
+            /*
+             write each row (rowID) of data per image in the stack
+             into a new image file made up of row rowID of each original image starting
+             from image 0 until the last image in the stack, thus having a height of the
+             amount of images in the stack (so in the case of MRI, it will have a height of
+             123 because there are 123 images in the stack and a width of the original image
+             width (429 in the case of MRI).
+            */
             while (_width<width) {
                 fileOut << slices[_number][rowID][_width];
                 size+=sizeof(slices[_number][rowID][_width]);
@@ -69,7 +77,7 @@ void SRVDAN001::VolImage::extract(int sliceId, std::string output_prefix){
 }
 
 void SRVDAN001::VolImage::diffmap(int sliceI, int sliceJ, std::string output_prefix){
-    std::ofstream fileOut("/Users/danielservant/Documents/Xcode Projects/CSC3020H Assignment 2/brain_mri_raws/" +output_prefix + ".data");
+    std::ofstream fileOut(output_prefix + ".data");
     std::ofstream * _fileOut = &fileOut; //pointer to point to ofstream object to pass to function
     SRVDAN001::writeOut(_fileOut, output_prefix, ".data", width, height, 1);
     fileOut.close();
@@ -115,7 +123,7 @@ bool SRVDAN001::VolImage::readImages(std::string baseName){
     int _width,_height;//iterators for width and height of each individual image
     int iterator=0;
     std::ifstream* _ifs;
-    std::ifstream ifs(("/Users/danielservant/Documents/Xcode Projects/CSC3020H Assignment 2/brain_mri_raws/" +baseName +".data"));
+    std::ifstream ifs((baseName +".data"));
     _ifs = &ifs;
     SRVDAN001::printError(_ifs, baseName, ".data");
     //pipe information from ifstream to program variables, consuming whitespace
@@ -127,7 +135,7 @@ bool SRVDAN001::VolImage::readImages(std::string baseName){
     //loop through all images in stack
     while(iterator<SRVDAN001::numImages){
         std::ostringstream stream; stream<<iterator;
-        std::ifstream ifs(("/Users/danielservant/Documents/Xcode Projects/CSC3020H Assignment 2/brain_mri_raws/" +baseName + stream.str() +".raw"),std::ios::binary);
+        std::ifstream ifs((baseName + stream.str() +".raw"),std::ios::binary);
         _ifs = &ifs;
         SRVDAN001::printError(_ifs, baseName, ".raw");
         byteArray** bytes = new byteArray*[height];
