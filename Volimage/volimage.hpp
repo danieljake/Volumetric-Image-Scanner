@@ -1,6 +1,5 @@
 //
 //  volimage.hpp
-//  Assignment 2
 //
 //  Created by Daniel Servant on 2019/03/13.
 //  Copyright © 2019 Daniel Servant. All rights reserved.
