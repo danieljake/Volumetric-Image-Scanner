@@ -7,3 +7,8 @@ So, for example, an image sequence called “scan” would have a file “scan.d
 The application is invoked as follows on the command line:
 
 **volimage <imageBase> [-d i j output_file_name] [-x i output_file_name]**
+
+Where <imageBase> is the the prefix for the file sequence ( “scan” in the example) 
+
+1. -d i j output file name: compute a difference map between images i and j, and write this out to file.
+2. -x i output file name: extract and write the slice with number i and write this out to file.
