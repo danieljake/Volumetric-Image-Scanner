@@ -1,4 +1,4 @@
-# This is a Makefile comment
+
 
 # Declare some variables to help construct our compile command
 CC=g++         # the compiler
